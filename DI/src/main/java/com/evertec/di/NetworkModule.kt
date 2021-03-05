@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit
  **/
 
 const val okHttpClientWithoutInterceptor = "defaultOkHttpClient"
-const val retrofitMovie = "retrofitMovie"
+const val retrofitPayment = "retrofitPayment"
 private const val DEFAULT_TIME_OUT = 60L
 
 
@@ -27,9 +27,9 @@ val networkModule = module {
 
     // Retrofit and OkHttpClient instances
     single(named(okHttpClientWithoutInterceptor)) { provideDefaultOkHttpClient() }
-    single(named(retrofitMovie)) { provideRetrofitMovieClient(get(named(okHttpClientWithoutInterceptor))) }
+    single(named(retrofitPayment)) { provideRetrofitPaymentClient(get(named(okHttpClientWithoutInterceptor))) }
     // API
-    single { provideMovieApi(get(named(retrofitMovie))) }
+    single { provideMovieApi(get(named(retrofitPayment))) }
 }
 
 
@@ -47,9 +47,9 @@ private fun provideDefaultOkHttpClient(): OkHttpClient {
 /**
  * Retrofit movie clients
  */
-private fun provideRetrofitMovieClient(client: OkHttpClient): Retrofit {
+private fun provideRetrofitPaymentClient(client: OkHttpClient): Retrofit {
     return Retrofit.Builder()
-        .baseUrl(BuildConfig.STORE_API)
+        .baseUrl(BuildConfig.PAYMENT_API)
         .client(client)
         .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

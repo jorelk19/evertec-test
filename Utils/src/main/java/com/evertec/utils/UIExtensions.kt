@@ -6,8 +6,7 @@ import android.util.Patterns
 import android.widget.EditText
 import android.widget.ImageView
 import com.jakewharton.picasso.OkHttp3Downloader
-import com.evertec.utils.app.App
-import com.google.android.material.textfield.TextInputEditText
+import com.evertec.di.app.App
 import com.squareup.picasso.Picasso
 import java.text.NumberFormat
 import java.util.*
@@ -107,4 +106,15 @@ fun String.isValidEmail(onTrue: (input: String) -> Unit = {}, onFalse: () -> Uni
             }
         }
     }
+}
+
+fun EditText.doOnTextChange(textChange: (CharSequence, Int) -> Unit) {
+    this.addTextChangedListener(object : TextWatcher {
+        override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+            textChange.invoke(s, before)
+        }
+        override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+        override fun afterTextChanged(s: Editable) {
+        }
+    })
 }

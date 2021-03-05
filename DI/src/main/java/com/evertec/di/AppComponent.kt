@@ -1,7 +1,9 @@
 package com.evertec.di
 
+import com.evertec.domain.PaymentDomain
 import com.evertec.domain.SignInDomain
 import com.evertec.domain.SplashScreenDomain
+import com.evertec.repository.implementation.PaymentRepository
 import com.evertec.repository.implementation.SignInRepository
 
 /**
@@ -11,6 +13,8 @@ import com.evertec.repository.implementation.SignInRepository
  * */
 data class AppComponent(
     val signInRepository: SignInRepository,
+    val paymentRepository: PaymentRepository,
     val signInDomain: SignInDomain,
-    val splashScreenDomain: SplashScreenDomain
+    val splashScreenDomain: SplashScreenDomain,
+    val paymentDomain: PaymentDomain
 )

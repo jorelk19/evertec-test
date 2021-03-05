@@ -1,4 +1,4 @@
-package com.evertec.utils.app
+package com.evertec.di.app
 
 import android.content.Context
 import com.evertec.di.KoinManager

@@ -1,4 +1,4 @@
-package com.evertec.utils.app
+package com.evertec.di.app
 
 interface INotifyInternetConnection {
     fun onHasInternet(hasInternet: Boolean)

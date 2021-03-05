@@ -14,8 +14,10 @@ import org.koin.dsl.module
 val domainModule = module {
     single { provideSignInDomain(get()) }
     single { provideSplashScreenDomain(get()) }
+    single { provideSplashScreenDomain(get()) }
 }
 
 private fun provideSignInDomain(signInRepository: SignInRepository) = SignInDomain(signInRepository)
 private fun provideSplashScreenDomain(defaultUserLocalRepository: DefaultUserLocalRepository) = SplashScreenDomain(defaultUserLocalRepository)
+private fun providePaymentDomain(defaultUserLocalRepository: DefaultUserLocalRepository) = SplashScreenDomain(defaultUserLocalRepository)
 

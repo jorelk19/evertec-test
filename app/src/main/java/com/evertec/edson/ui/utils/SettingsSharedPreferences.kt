@@ -2,7 +2,7 @@ package com.evertec.edson.ui.utils
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.evertec.utils.app.App
+import com.evertec.di.app.App
 
 const val PREFERENCES_FILE_KEY = "com.mercadolibre.preferences"
 const val CURRENT_SITE = "CURRENT_SITE"

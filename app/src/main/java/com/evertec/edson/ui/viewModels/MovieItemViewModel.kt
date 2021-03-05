@@ -21,7 +21,7 @@ class MovieItemViewModel : BaseViewModel() {
      * */
     fun showMovieDetail() {
         if (::currentMovie.isInitialized) {
-            ViewManager.getInstance.attachFragment(MoviesDetailFragment.getInstance(currentMovie), R.id.fragment_container)
+            ViewManager.getInstance.attachFragment(MoviesDetailFragment.getInstance(currentMovie), R.id.nav_host_fragment)
         }
     }
 
