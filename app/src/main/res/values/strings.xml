@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Evertec test</string>
+    <string name="timerForValidateInternet">3000</string>
+    <string name="movie_name">Peliculas</string>
+    <string name="movie_title">Peliculas</string>
+    <string name="overview_title">Sinopsis</string>
+    <string name="release_date">Fecha de estreno</string>
+    <string name="movie_detail_title">Detalle de la película</string>
+    <string name='login_email_placeholder'>Ingresa tu correo electrónico</string>
+    <string name='login_password_title'>Contraseña</string>
+    <string name='login_email_title'>Correo electrónico</string>
+    <string name='login_password_placeholder'>Ingresa tu contraseña</string>
+    <string name='login_forgot_password'>¿Has olvidado tu contraseña?</string>
+    <string name='login_sign_up'>Crear cuenta</string>
+    <string name='login_sign_in'>Iniciar sesión</string>
+    <string name='login_screen_title'>Iniciar sesión</string>
+    <string name='login_service_error'>Verifica que utilizaste el email y la contraseña correctas</string>
+    <string name='login_empty_fields'>El usuario o la contraseña no pueden estar vacios</string>
+    <string name='email_is_invalid'>El email debe tener una estructura válida</string>
+    <string name='email_is_empty'>El email no puede estar vacío</string>
+</resources>
