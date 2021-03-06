@@ -1,5 +1,6 @@
 package com.evertec.di
 
+import com.evertec.domain.MyPaymentsDomain
 import com.evertec.domain.PaymentDomain
 import com.evertec.domain.SignInDomain
 import com.evertec.domain.SplashScreenDomain
@@ -18,12 +19,14 @@ class PaymentComponent : KoinComponent {
     private val signInDomain : SignInDomain by inject()
     private val splashScreenDomain : SplashScreenDomain by inject()
     private val paymentDomain : PaymentDomain by inject()
+    private val myPaymentsDomain : MyPaymentsDomain by inject()
     private val paymentRepository : PaymentRepository by inject()
     val appComponent = AppComponent (
         signInRepository = signInRepository,
         signInDomain = signInDomain,
         splashScreenDomain = splashScreenDomain,
         paymentDomain = paymentDomain,
-        paymentRepository = paymentRepository
+        paymentRepository = paymentRepository,
+        myPaymentsDomain = myPaymentsDomain
     )
 }

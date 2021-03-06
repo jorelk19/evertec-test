@@ -1,9 +1,7 @@
 package com.evertec.businessmodels.api
 
-import com.evertec.businessmodels.response.MovieResponse
 import com.evertec.businessmodels.response.SignInResponse
 import retrofit2.http.GET
-import retrofit2.http.Query
 
 /**
  * Interface used to get the movies from the given api

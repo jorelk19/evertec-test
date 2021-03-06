@@ -6,7 +6,7 @@ import com.evertec.businessmodels.response.PaymentResponse
 import com.evertec.repository.interfaces.IPaymentRepository
 
 class PaymentRepository(private val paymentApi: PaymentApi) : IPaymentRepository {
-    override suspend fun informationPayment(paymentRequest: PaymentRequest): PaymentResponse {
-        return paymentApi.informationRequest(paymentRequest)
+    override suspend fun processTransaction(paymentRequest: PaymentRequest): PaymentResponse {
+        return paymentApi.processTransaction(paymentRequest)
     }
 }

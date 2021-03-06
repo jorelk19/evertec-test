@@ -4,5 +4,5 @@ import com.evertec.businessmodels.request.PaymentRequest
 import com.evertec.businessmodels.response.PaymentResponse
 
 interface IPaymentRepository {
-    suspend fun informationPayment(paymentRequest : PaymentRequest) : PaymentResponse
+    suspend fun processTransaction(paymentRequest : PaymentRequest) : PaymentResponse
 }

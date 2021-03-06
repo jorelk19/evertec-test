@@ -17,13 +17,13 @@ import androidx.recyclerview.widget.RecyclerView
 abstract class GenericAdapter<T, D> : RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     var mContext: Context? = null
-    var listItems: ArrayList<T> = arrayListOf()
+    var listItems: MutableList<T> = arrayListOf()
 
     abstract fun getLayoutResId(): Int
 
     abstract fun onBindData(model: T, position: Int, dataBinding: D)
 
-    constructor(context: Context?, arrayList: ArrayList<T>) {
+    constructor(context: Context?, arrayList: MutableList<T>) {
         mContext = context
         this.listItems = arrayList
     }
@@ -41,7 +41,7 @@ abstract class GenericAdapter<T, D> : RecyclerView.Adapter<RecyclerView.ViewHold
         return listItems.size
     }
 
-    open fun addItems(arrayList: ArrayList<T>) {
+    open fun addItems(arrayList: MutableList<T>) {
         listItems.clear()
         listItems.addAll(arrayList)
         notifyDataSetChanged()

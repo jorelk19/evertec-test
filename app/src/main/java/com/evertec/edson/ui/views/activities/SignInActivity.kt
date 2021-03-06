@@ -3,15 +3,11 @@ package com.evertec.edson.ui.views.activities
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.evertec.edson.R
 import com.evertec.edson.databinding.ActivitySignInBinding
 import com.evertec.edson.ui.utils.getViewModelFactory
-import com.evertec.edson.ui.viewModels.MovieDetailViewModel
 import com.evertec.edson.ui.viewModels.SignInViewModel
-import com.evertec.edson.ui.viewModels.base.ViewModelFactory
 import com.evertec.edson.ui.views.activities.base.BaseFragmentActivity
 
 class SignInActivity : BaseFragmentActivity() {

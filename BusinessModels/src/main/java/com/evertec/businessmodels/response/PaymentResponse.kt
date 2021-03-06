@@ -1,30 +1,27 @@
 package com.evertec.businessmodels.response
 
+import com.evertec.businessmodels.business.Amount
+import com.evertec.businessmodels.business.Conversion
+import com.evertec.businessmodels.business.Status
+
+
 data class PaymentResponse(
-    var status: Status? = null,
-    var provider: String? = null,
-    var serviceCode: String? = null,
-    var cardType: String? = null,
-    var cardTypes: List<String>? = null,
-    var displayInterest: Boolean = false,
-    var requireOtp: Boolean = false,
-    var requireCvv2: Boolean = false,
-    var threeDS: String? = null,
-    var credits: List<Credit>? = null
-)
-
-class Status {
-    var status: String? = null
-    var reason: String? = null
-    var message: String? = null
-    var date: String? = null
-}
-
-data class Credit(
-    var code: Int = 0,
-    var type: String? = null,
-    var groupCode: String? = null,
-    var installments: List<Int>? = null,
-    var installment: Int = 0,
-    var description: String? = null
+    var email: String = "",
+    var status: Status = Status(),
+    var date: String = "",
+    var transactionDate: String = "",
+    var internalReference: Int = 0,
+    var reference: String = "",
+    var paymentMethod: String = "",
+    var franchise: String = "",
+    var franchiseName: String = "",
+    var issuerName: String = "",
+    var amount: Amount = Amount(),
+    var conversion: Conversion = Conversion(),
+    var authorization: String = "",
+    var receipt: String = "",
+    var type: String = "",
+    var refunded: Boolean = false,
+    var lastDigits: String = "",
+    var provider: String? = ""
 )

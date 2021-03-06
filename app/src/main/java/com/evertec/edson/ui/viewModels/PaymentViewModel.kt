@@ -1,20 +1,20 @@
 package com.evertec.edson.ui.viewModels
 
-import android.text.InputFilter
 import androidx.lifecycle.MutableLiveData
 import com.evertec.businessmodels.business.Payment
-import com.evertec.businessmodels.request.Amount
+import com.evertec.businessmodels.business.Person
+import com.evertec.businessmodels.business.Amount
 import com.evertec.businessmodels.request.Card
 import com.evertec.businessmodels.response.PaymentResponse
 import com.evertec.businessmodels.result.IPaymentResult
 import com.evertec.domain.PaymentDomain
 import com.evertec.edson.R
+import com.evertec.edson.ui.utils.NetworkUtil
+import com.evertec.edson.ui.utils.settingsSharedPreferences
 import com.evertec.edson.ui.viewModels.base.BaseViewModel
-import com.evertec.edson.ui.views.fragments.PaymentFragment
 import com.evertec.utils.ViewManager
-import java.util.*
 
-class PaymentViewModel(val paymentDomain: PaymentDomain) : BaseViewModel() {
+class PaymentViewModel(private val paymentDomain: PaymentDomain) : BaseViewModel() {
 
     /*Payment Information*/
     val cardNumber = MutableLiveData<String>()
@@ -51,9 +51,18 @@ class PaymentViewModel(val paymentDomain: PaymentDomain) : BaseViewModel() {
                 total = 500000.0//totalPayment.value?.let { it.toDouble() } ?: run { 0.0 }
             )
         )
+
+        val arrayName = cardName.value?.split(" ") ?: run { arrayListOf<String>() }
+        val payer = Person(
+            documentType = "",
+            name = "Edson",//arrayName[0],
+            email = settingsSharedPreferences.getCurrentUser().email,
+            document = "1032362650",
+            surname = "Nieto"//if(arrayName.size > 2) arrayName[1] else ""
+        )
         paymentDomain.errorManager = this
         paymentDomain.domainResult(paymentResult)
-        paymentDomain.getPaymentInformation(payment, card)
+        paymentDomain.processTransaction(payer, payment, card, NetworkUtil.getIpAddress())
     }
 
     fun validateFields(){

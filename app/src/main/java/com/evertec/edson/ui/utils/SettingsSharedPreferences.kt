@@ -2,10 +2,13 @@ package com.evertec.edson.ui.utils
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.evertec.businessmodels.business.User
 import com.evertec.di.app.App
+import com.evertec.utils.fromJson
+import com.evertec.utils.json
 
 const val PREFERENCES_FILE_KEY = "com.mercadolibre.preferences"
-const val CURRENT_SITE = "CURRENT_SITE"
+const val CURRENT_USER = "CURRENT_USER"
 
 /**
  * Class use to store setting shared preferences
@@ -25,12 +28,12 @@ class SettingsSharedPreferences(appContext: Context) {
     private fun setString(key: String, value: String) = this.sharedPreferences.edit().putString(key, value).commit()
     private fun setBoolean(key: String, value: Boolean) = this.sharedPreferences.edit().putBoolean(key, value).commit()
 
-    fun setSite(site: String) {
-        setString(CURRENT_SITE, site)
+    fun setCurrentUser(user: User) {
+        setString(CURRENT_USER, user.json())
     }
 
-    fun getCurrentSite(): String {
-        return string(CURRENT_SITE)
+    fun getCurrentUser(): User {
+        return string(CURRENT_USER).fromJson()
     }
 }
 

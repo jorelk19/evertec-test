@@ -22,20 +22,21 @@ class UserLocalRepository : ILocalRepositoryManager<User, UserDTO> {
     override fun removeAll(element: UserDTO) {
     }
 
-    override fun getAll(element: UserDTO): ArrayList<User> {
+    override fun getAll(element: User): ArrayList<User> {
         return arrayListOf()
     }
 
     override fun update(user: User) {
         val userExists = validateUserDtoExists(user)
         userExists?.let { currentUserDTO ->
-            realm.beginTransaction()
             currentUserDTO.email = user.email
             currentUserDTO.cellPhoneNumber = user.cellPhoneNumber
             currentUserDTO.password = user.password
             currentUserDTO.firstName = user.firstName
             currentUserDTO.lastName = user.lastName
-            realm.commitTransaction();
+            realm.beginTransaction()
+            realm.copyToRealmOrUpdate(currentUserDTO)
+            realm.commitTransaction()
         }
     }
 

@@ -1,7 +1,6 @@
 package com.evertec.repository.remote
 
 import com.evertec.businessmodels.api.SignInApi
-import com.evertec.businessmodels.business.Movie
 import com.evertec.businessmodels.response.SignInResponse
 
 /**

@@ -3,7 +3,7 @@ package com.evertec.edson.ui.viewModels.base
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.evertec.di.KoinManager
-import com.evertec.edson.ui.viewModels.MovieDetailViewModel
+import com.evertec.edson.ui.viewModels.MyPaymentsViewModel
 import com.evertec.edson.ui.viewModels.PaymentViewModel
 import com.evertec.edson.ui.viewModels.SignInViewModel
 import com.evertec.edson.ui.viewModels.SplashScreenViewModel
@@ -26,6 +26,7 @@ class ViewModelFactory : ViewModelProvider.NewInstanceFactory() {
                 isAssignableFrom(SignInViewModel::class.java) -> SignInViewModel(KoinManager.getAppComponent().signInDomain)
                 isAssignableFrom(SplashScreenViewModel::class.java) -> SplashScreenViewModel(KoinManager.getAppComponent().splashScreenDomain)
                 isAssignableFrom(PaymentViewModel::class.java) -> PaymentViewModel(KoinManager.getAppComponent().paymentDomain)
+                isAssignableFrom(MyPaymentsViewModel::class.java) -> MyPaymentsViewModel(KoinManager.getAppComponent().myPaymentsDomain)
                 else -> throw IllegalStateException("Unknown ViewModel class: ${modelClass.name}")
             }
         } as T

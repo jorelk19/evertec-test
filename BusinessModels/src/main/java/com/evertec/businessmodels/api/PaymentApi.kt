@@ -6,6 +6,6 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 
 interface PaymentApi {
-        @POST("/rest/gateway/information")
-    suspend fun informationRequest(@Body paymentRequest: PaymentRequest): PaymentResponse
+        @POST("/rest/gateway/process")
+    suspend fun processTransaction(@Body paymentRequest: PaymentRequest): PaymentResponse
 }

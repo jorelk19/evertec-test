@@ -7,6 +7,7 @@ import com.evertec.businessmodels.result.ISignInResult
 import com.evertec.di.app.App
 import com.evertec.domain.SignInDomain
 import com.evertec.edson.R
+import com.evertec.edson.ui.utils.settingsSharedPreferences
 import com.evertec.edson.ui.viewModels.base.BaseViewModel
 import com.evertec.edson.ui.views.activities.MainActivity
 import com.evertec.utils.SnackFactory
@@ -41,6 +42,7 @@ class SignInViewModel(private val sigInDomain: SignInDomain) : BaseViewModel() {
     private val signInResult = object : ISignInResult {
         override fun logIn(signInResponse: SignInResponse) {
             if (signInResponse.isValid) {
+                settingsSharedPreferences.setCurrentUser(signInResponse.user)
                 ViewManager.getInstance.goTo(MainActivity::class.java)
             } else {
                 SnackFactory.showWarningMessage(ViewManager.getInstance.getCurrentActivity(), R.id.coordinatoar_login, ViewManager.getInstance.getString(R.string.login_service_error), currentContext = App.getAppContext())

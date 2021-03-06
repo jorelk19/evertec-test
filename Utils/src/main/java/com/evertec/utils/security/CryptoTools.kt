@@ -46,7 +46,6 @@ object CryptoTools {
         var passwordDigest: String = ""
         try {
             sha256 = MessageDigest.getInstance("SHA-256")
-            val hash: ByteArray = MessageDigest.getInstance("SHA-256").digest(tranKey.toByteArray(charset("UTF-8")))
             sha256.update(nonce.toByteArray(charset("UTF-8")))
             sha256.update(seed.toByteArray(charset("UTF-8")))
             sha256.update(tranKey.toByteArray(charset("UTF-8")))

@@ -1,8 +1,5 @@
 package com.evertec.repository.local
 
-import com.evertec.businessmodels.business.Movie
-import io.realm.Realm
-
 /**
  * Class used to manage the local repository
  * @author Edson Joel Nieto Ardila

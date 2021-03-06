@@ -12,5 +12,5 @@ interface ILocalRepositoryManager<T, D> {
     fun delete(element : T)
     fun read(element : T) : T
     fun removeAll(element : D)
-    fun getAll(element : D) : ArrayList<T>
+    fun getAll(element : T) : ArrayList<T>
 }
