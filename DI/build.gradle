@@ -66,4 +66,5 @@ dependencies {
     implementation(project(":Domain"))
     implementation(project(":Repository"))
     implementation(project(":BusinessModels"))
+    implementation(project(":Utils"))
 }

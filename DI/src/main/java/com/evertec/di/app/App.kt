@@ -2,8 +2,8 @@ package com.evertec.di.app
 
 import android.content.Context
 import com.evertec.di.KoinManager
+import com.evertec.di.connectivity.base.BaseConnectivityProvider
 import com.evertec.utils.ViewManager
-import com.evertec.utils.connectivity.base.BaseConnectivityProvider
 
 /**
  * Class used to get the application instance and call the koin dependency injection

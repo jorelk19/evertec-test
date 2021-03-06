@@ -5,8 +5,8 @@ import android.text.TextWatcher
 import android.util.Patterns
 import android.widget.EditText
 import android.widget.ImageView
-import com.jakewharton.picasso.OkHttp3Downloader
 import com.evertec.di.app.App
+import com.jakewharton.picasso.OkHttp3Downloader
 import com.squareup.picasso.Picasso
 import java.text.NumberFormat
 import java.util.*

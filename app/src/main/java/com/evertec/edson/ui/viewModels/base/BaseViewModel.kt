@@ -4,6 +4,7 @@ import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.ViewModel
 import com.evertec.businessmodels.errors.IErrorManager
+import com.evertec.di.app.App
 import com.evertec.edson.R
 import com.evertec.edson.ui.views.activities.MainActivity
 import com.evertec.utils.ViewManager
@@ -26,7 +27,9 @@ abstract class BaseViewModel : ViewModel(), IErrorManager {
         ViewManager.getInstance.hideLoader()
         SnackFactory.showErrorMessage(httpException = httpException,
             resource = if(ViewManager.getInstance.getCurrentActivity()::class.java == MainActivity::class.java)  R.id.coordinator_main_activity else R.id.coordinatoar_login,
-            fragmentActivity = ViewManager.getInstance.getCurrentActivity())
+            fragmentActivity = ViewManager.getInstance.getCurrentActivity(),
+            currentContext = App.getAppContext()
+        )
     }
 
     /**
@@ -36,7 +39,9 @@ abstract class BaseViewModel : ViewModel(), IErrorManager {
         ViewManager.getInstance.hideLoader()
         SnackFactory.showWarningMessage(fragmentActivity = ViewManager.getInstance.getCurrentActivity(),
             resource = if(ViewManager.getInstance.getCurrentActivity()::class.java == MainActivity::class.java)  R.id.coordinator_main_activity else R.id.coordinatoar_login,
-            message = error?.let { it } ?: run { ViewManager.getInstance.getString(R.string.something_went_wrong_retry) })
+            message = error?.let { it } ?: run { ViewManager.getInstance.getString(R.string.something_went_wrong_retry) },
+            currentContext = App.getAppContext()
+        )
     }
 
     /**
@@ -46,7 +51,9 @@ abstract class BaseViewModel : ViewModel(), IErrorManager {
         ViewManager.getInstance.hideLoader()
         SnackFactory.showWarningMessage(fragmentActivity = ViewManager.getInstance.getCurrentActivity(),
             resource = if(ViewManager.getInstance.getCurrentActivity()::class.java == MainActivity::class.java)  R.id.coordinator_main_activity else R.id.coordinatoar_login,
-            message = error?.let { it } ?: run { ViewManager.getInstance.getString(R.string.something_went_wrong_retry) })
+            message = error?.let { it } ?: run { ViewManager.getInstance.getString(R.string.something_went_wrong_retry) },
+            currentContext = App.getAppContext()
+        )
     }
 
     /**
@@ -70,7 +77,9 @@ abstract class BaseViewModel : ViewModel(), IErrorManager {
         ViewManager.getInstance.hideLoader()
         SnackFactory.showWarningMessage(fragmentActivity = ViewManager.getInstance.getCurrentActivity(),
             resource = if(ViewManager.getInstance.getCurrentActivity()::class.java == MainActivity::class.java)  R.id.coordinator_main_activity else R.id.coordinatoar_login,
-            message = exception.message?.let { it } ?: run { ViewManager.getInstance.getString(R.string.something_went_wrong_retry) })
+            message = exception.message?.let { it } ?: run { ViewManager.getInstance.getString(R.string.something_went_wrong_retry) },
+            currentContext = App.getAppContext()
+        )
     }
 
     companion object {

@@ -12,6 +12,7 @@ import com.evertec.edson.R
 import com.evertec.edson.databinding.LayoutPaymentFragmentBinding
 import com.evertec.edson.ui.utils.getViewModelFactory
 import com.evertec.edson.ui.viewModels.PaymentViewModel
+import com.evertec.utils.ViewManager
 import com.evertec.utils.doOnTextChange
 import java.util.*
 
@@ -19,27 +20,28 @@ class PaymentFragment : Fragment(){
 
     private lateinit var paymentFragmentBinding: LayoutPaymentFragmentBinding
     private val viewModel by viewModels<PaymentViewModel> { getViewModelFactory() }
-
+    private var currentDate = ""
     /**
      * Method to instantiate the view
      * */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         paymentFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.layout_payment_fragment, container, false)
+        paymentFragmentBinding.viewModel = viewModel
         setListeners()
         addSubscriptions()
         return paymentFragmentBinding.root
     }
 
     private fun addSubscriptions() {
-
+        viewModel.validateFields()
     }
 
     private fun setListeners() {
-        //paymentFragmentBinding.etCardDate.doOnTextChange { s, before -> validateDate(s, before) }
+        paymentFragmentBinding.etCardDate.doOnTextChange { s, before -> validateDate(s, before) }
     }
 
-   /* private fun validateDate(s: CharSequence, before: Int) {
-        var working = cleanDateString(s.toString())
+    private fun validateDate(s: CharSequence, before: Int) {
+        var working = viewModel.cleanDateString(s.toString())
         var isValid = true
         if (working != currentDate) {
             currentDate = working
@@ -48,8 +50,8 @@ class PaymentFragment : Fragment(){
                     isValid = false
                     setDateEmptyText()
                 } else {
-                    working += DATE_DIVIDER
-                    setDateText(getStringDate(working))
+                    working += PaymentViewModel.DATE_DIVIDER
+                    setDateText(viewModel.getStringDate(working))
                     paymentFragmentBinding.etCardDate.setSelection(working.length)
                 }
             } else if (working.length == 5 && before == 0) {
@@ -57,38 +59,35 @@ class PaymentFragment : Fragment(){
                 val currentYear = Calendar.getInstance().get(Calendar.YEAR) % 100
                 if (Integer.parseInt(enteredYear) < currentYear) {
                     isValid = false
-                    paymentFragmentBinding.etCardDate.setText(getStringDate(working.subSequence(0, 3).toString()))
+                    paymentFragmentBinding.etCardDate.setText(viewModel.getStringDate(working.subSequence(0, 3).toString()))
                     paymentFragmentBinding.etCardDate.setSelection(3)
                 } else {
-                    setDateText(getStringDate(working))
+                    setDateText(viewModel.getStringDate(working))
                     paymentFragmentBinding.etCardDate.filters = arrayOf<InputFilter>(InputFilter.LengthFilter(5))
                 }
             } else if (working.length != 5) {
                 if (working.isEmpty() && before == 0) {
                     setDateEmptyText()
                 } else if (working.length == 3 && before == 0) {
-                    setDateText(getStringDate(working.subSequence(0, 2).toString() + DATE_DIVIDER))
+                    setDateText(viewModel.getStringDate(working.subSequence(0, 2).toString() + PaymentViewModel.DATE_DIVIDER))
                     paymentFragmentBinding.etCardDate.setSelection(3)
                 } else {
-                    setDateText(getStringDate(working))
+                    setDateText(viewModel.getStringDate(working))
                 }
                 paymentFragmentBinding.etCardDate.filters = arrayOf<InputFilter>(InputFilter.LengthFilter(6))
                 isValid = false
             }
             paymentFragmentBinding.etCardDate.setSelection(working.length)
         }
-        isEnableStepThree = isValid
-        paymentFragmentBinding.btnPayment.isEnabled = isEnableStepThree
-    }*/
+    }
 
-    companion object {
-        const val EDIT_CARD = "EDIT_CARD"
-        private const val DATE_DIVIDER = "/"
-        private const val DATE_EMPTY = ""
-        private const val DATE_MM_YY = "MM/YY"
-        private const val YEARS_COMPLEMENT = "20"
-        private const val MARGIN_TOP_BOTTOM = 60
-        private const val MARGIN_START_END = 30
+    private fun setDateText(dateString: String) {
+        paymentFragmentBinding.etCardDate.setText(dateString)
+        paymentFragmentBinding.tvDateExpired.text = dateString
+    }
 
+    private fun setDateEmptyText() {
+        paymentFragmentBinding.etCardDate.setText(viewModel.getStringDate(PaymentViewModel.DATE_EMPTY))
+        paymentFragmentBinding.tvDateExpired.text = viewModel.getStringDate(PaymentViewModel.DATE_MM_YY)
     }
 }

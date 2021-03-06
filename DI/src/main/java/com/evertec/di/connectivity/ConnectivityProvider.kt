@@ -1,4 +1,4 @@
-package com.evertec.utils.connectivity
+package com.evertec.di.connectivity
 
 import android.net.ConnectivityManager
 import android.net.ConnectivityManager.NetworkCallback
@@ -6,7 +6,7 @@ import android.net.Network
 import android.net.NetworkCapabilities
 import android.os.Build
 import androidx.annotation.RequiresApi
-import com.evertec.utils.connectivity.base.BaseConnectivityProvider
+import com.evertec.di.connectivity.base.BaseConnectivityProvider
 
 @RequiresApi(Build.VERSION_CODES.N)
 class ConnectivityProvider(private val cm: ConnectivityManager) :

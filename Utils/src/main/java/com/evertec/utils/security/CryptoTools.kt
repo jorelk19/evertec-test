@@ -8,6 +8,7 @@ import java.security.NoSuchAlgorithmException
 import java.security.PublicKey
 import java.security.spec.InvalidKeySpecException
 import java.security.spec.X509EncodedKeySpec
+import java.text.SimpleDateFormat
 import java.util.*
 import javax.crypto.Cipher
 
@@ -40,15 +41,16 @@ object CryptoTools {
     }
 
 
-    fun buildPasswordDigest(userName: String?, password: String, nonce: String, dateTime: String): String? {
+    fun buildPasswordDigest(tranKey: String, nonce: String, seed: String): String {
         val sha256: MessageDigest
-        var passwordDigest: String? = null
+        var passwordDigest: String = ""
         try {
             sha256 = MessageDigest.getInstance("SHA-256")
-            val hash: ByteArray = MessageDigest.getInstance("SHA-256").digest(password.toByteArray(charset("UTF-8")))
+            val hash: ByteArray = MessageDigest.getInstance("SHA-256").digest(tranKey.toByteArray(charset("UTF-8")))
             sha256.update(nonce.toByteArray(charset("UTF-8")))
-            sha256.update(dateTime.toByteArray(charset("UTF-8")))
-            passwordDigest = Base64.encodeToString(sha256.digest(hash), Base64.DEFAULT)
+            sha256.update(seed.toByteArray(charset("UTF-8")))
+            sha256.update(tranKey.toByteArray(charset("UTF-8")))
+            passwordDigest = Base64.encodeToString(sha256.digest(), Base64.DEFAULT)
             sha256.reset()
         } catch (e: NoSuchAlgorithmException) {
             // TODO Auto-generated catch block
@@ -59,10 +61,18 @@ object CryptoTools {
         return passwordDigest
     }
 
-    fun buildNonce(): String? {
-        val nonce = StringBuffer()
-        val dateTimeString = Date().time.toString()
-        val nonceByte = dateTimeString.toByteArray()
-        return Base64.encodeToString(nonceByte, Base64.DEFAULT)
+    fun getPlainNonce(): String {
+        return UUID.randomUUID().toString()
+    }
+
+    fun buildNonce(nonce: String): String {
+        return Base64.encodeToString(nonce.toByteArray(), Base64.DEFAULT)
+    }
+
+    fun buildSeed(): String {
+        val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ROOT)
+        val datePart = sdf.format(Date())
+        val arrayDate = datePart.split(" ")
+        return arrayDate[0] + "T" + arrayDate[1] + "-05:00"
     }
 }

@@ -1,5 +1,7 @@
 package com.evertec.businessmodels.result
 
-interface IPaymentResult {
+import com.evertec.businessmodels.response.PaymentResponse
 
+interface IPaymentResult {
+    fun setInformationRequest(paymentResponse: PaymentResponse)
 }

@@ -1,12 +1,12 @@
 package com.evertec.utils
 
 
+import android.content.Context
 import android.view.View
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import com.google.android.material.snackbar.Snackbar
-import com.evertec.di.app.App
 import retrofit2.HttpException
 
 /**
@@ -19,10 +19,10 @@ object SnackFactory {
     /**
      * Method to show specific warning
      * */
-    fun showWarningMessage(fragmentActivity: FragmentActivity, resource: Int, message: String) {
+    fun showWarningMessage(fragmentActivity: FragmentActivity, resource: Int, message: String, currentContext : Context) {
         Snackbar.make(fragmentActivity.findViewById<CoordinatorLayout>(resource), message, Snackbar.LENGTH_SHORT)
-            .setBackgroundTint(ContextCompat.getColor(App.getAppContext(), R.color.statusYellowLabel))
-            .setTextColor(ContextCompat.getColor(App.getAppContext(), android.R.color.white))
+            .setBackgroundTint(ContextCompat.getColor(currentContext, R.color.statusYellowLabel))
+            .setTextColor(ContextCompat.getColor(currentContext, android.R.color.white))
             .setDuration(Snackbar.LENGTH_LONG)
             .show()
     }
@@ -37,14 +37,15 @@ object SnackFactory {
         currentView: View? = null,
         fragmentActivity: FragmentActivity,
         resource: Int? = null,
-        color: Int? = null
+        color: Int? = null,
+        currentContext : Context
     ) {
         val finalMessage = getMessage(httpException, nullPointerException, defaultMessage, fragmentActivity)
         val finalView = getCurrentView(fragmentActivity, currentView, resource)
         finalView?.let {
             Snackbar.make(finalView, finalMessage, Snackbar.LENGTH_SHORT)
-                .setBackgroundTint(ContextCompat.getColor(App.getAppContext(), color ?: R.color.statusRedLabel))
-                .setTextColor(ContextCompat.getColor(App.getAppContext(), android.R.color.white))
+                .setBackgroundTint(ContextCompat.getColor(currentContext, color ?: R.color.statusRedLabel))
+                .setTextColor(ContextCompat.getColor(currentContext, android.R.color.white))
                 .setDuration(Snackbar.LENGTH_LONG)
                 .show()
         }

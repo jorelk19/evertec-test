@@ -1,5 +1,6 @@
 package com.evertec.di
 
+import com.evertec.businessmodels.api.PaymentApi
 import com.evertec.businessmodels.api.SignInApi
 import okhttp3.OkHttpClient
 import org.koin.core.qualifier.named
@@ -29,7 +30,7 @@ val networkModule = module {
     single(named(okHttpClientWithoutInterceptor)) { provideDefaultOkHttpClient() }
     single(named(retrofitPayment)) { provideRetrofitPaymentClient(get(named(okHttpClientWithoutInterceptor))) }
     // API
-    single { provideMovieApi(get(named(retrofitPayment))) }
+    single { providePaymentApi(get(named(retrofitPayment))) }
 }
 
 
@@ -59,5 +60,5 @@ private fun provideRetrofitPaymentClient(client: OkHttpClient): Retrofit {
 /**
  * Movie api provider
  * */
-private fun provideMovieApi(retrofit: Retrofit): SignInApi = retrofit.create(SignInApi::class.java)
+private fun providePaymentApi(retrofit: Retrofit): PaymentApi = retrofit.create(PaymentApi::class.java)
 

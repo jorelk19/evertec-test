@@ -1,7 +1,8 @@
 package com.evertec.di
 
-import com.evertec.businessmodels.api.SignInApi
+import com.evertec.businessmodels.api.PaymentApi
 import com.evertec.repository.implementation.DefaultUserLocalRepository
+import com.evertec.repository.implementation.PaymentRepository
 import com.evertec.repository.implementation.SignInRepository
 import org.koin.dsl.module
 
@@ -11,12 +12,14 @@ import org.koin.dsl.module
  * @since 1.0.0
  * */
 
-private fun provideSignInRepository(signInApi: SignInApi) = SignInRepository(signInApi)
+private fun provideSignInRepository() = SignInRepository()
+private fun providePaymentRepository(paymentApi: PaymentApi) = PaymentRepository(paymentApi)
 private fun provideDefaultUserRepository() = DefaultUserLocalRepository()
 
 val repositoryModule = module {
-    single { provideSignInRepository(get()) }
+    single { provideSignInRepository() }
     single { provideDefaultUserRepository() }
+    single { providePaymentRepository(get()) }
 }
 
 

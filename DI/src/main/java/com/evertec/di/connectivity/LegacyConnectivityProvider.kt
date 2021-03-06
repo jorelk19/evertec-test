@@ -1,4 +1,4 @@
-package com.evertec.utils.connectivity
+package com.evertec.di.connectivity
 
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -11,7 +11,7 @@ import android.net.Network
 import android.net.NetworkCapabilities
 import android.net.NetworkInfo
 import android.os.Build
-import com.evertec.utils.connectivity.base.BaseConnectivityProvider
+import com.evertec.di.connectivity.base.BaseConnectivityProvider
 
 @Suppress("DEPRECATION")
 class LegacyConnectivityProvider(

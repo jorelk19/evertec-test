@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.evertec.businessmodels.response.SignInResponse
 import com.evertec.businessmodels.result.ISignInResult
+import com.evertec.di.app.App
 import com.evertec.domain.SignInDomain
 import com.evertec.edson.R
 import com.evertec.edson.ui.viewModels.base.BaseViewModel
@@ -42,7 +43,7 @@ class SignInViewModel(private val sigInDomain: SignInDomain) : BaseViewModel() {
             if (signInResponse.isValid) {
                 ViewManager.getInstance.goTo(MainActivity::class.java)
             } else {
-                SnackFactory.showWarningMessage(ViewManager.getInstance.getCurrentActivity(), R.id.coordinatoar_login, ViewManager.getInstance.getString(R.string.login_service_error))
+                SnackFactory.showWarningMessage(ViewManager.getInstance.getCurrentActivity(), R.id.coordinatoar_login, ViewManager.getInstance.getString(R.string.login_service_error), currentContext = App.getAppContext())
             }
         }
     }

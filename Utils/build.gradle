@@ -72,8 +72,4 @@ dependencies {
     implementation "org.koin:koin-android:2.0.1"
     implementation 'org.koin:koin-androidx-viewmodel:2.0.1'
 
-    //Picasso
-    implementation "com.squareup.picasso:picasso:2.5.2"
-    implementation 'com.jakewharton.picasso:picasso2-okhttp3-downloader:1.1.0'
-
 }

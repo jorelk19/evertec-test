@@ -1,4 +1,4 @@
-package com.evertec.utils.connectivity.base
+package com.evertec.di.connectivity.base
 
 import android.content.Context
 import android.content.Context.CONNECTIVITY_SERVICE
@@ -10,8 +10,8 @@ import android.os.Build
 import android.os.Handler
 import android.os.Looper
 import androidx.annotation.RequiresApi
-import com.evertec.utils.connectivity.ConnectivityProvider
-import com.evertec.utils.connectivity.LegacyConnectivityProvider
+import com.evertec.di.connectivity.ConnectivityProvider
+import com.evertec.di.connectivity.LegacyConnectivityProvider
 
 abstract class BaseConnectivityProvider {
     private val handler = Handler(Looper.getMainLooper())
