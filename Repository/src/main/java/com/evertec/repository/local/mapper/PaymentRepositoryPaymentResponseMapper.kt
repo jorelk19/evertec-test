@@ -11,19 +11,35 @@ import com.evertec.repository.local.entities.StatusDTO
 object PaymentRepositoryPaymentResponseMapper {
     fun mapPaymentResponseDTO(paymentResponse: PaymentResponse): PaymentResponseDTO {
         val paymentResponseDTO = PaymentResponseDTO()
-        paymentResponseDTO.amount = mapAmountDTO(paymentResponse.amount)
+        paymentResponse.amount?.let {
+            paymentResponseDTO.amount = mapAmountDTO(it)
+        }
         paymentResponseDTO.email = paymentResponse.email
-        paymentResponseDTO.authorization = paymentResponse.authorization
-        paymentResponseDTO.date = paymentResponse.date
+        paymentResponse.authorization?.let {
+            paymentResponseDTO.authorization = it
+        }
+        paymentResponse.date?.let {
+            paymentResponseDTO.date = it
+        }
         paymentResponseDTO.franchise = paymentResponse.franchise
         paymentResponseDTO.franchiseName = paymentResponse.franchiseName
         paymentResponseDTO.internalReference = paymentResponse.internalReference
-        paymentResponseDTO.issuerName = paymentResponse.issuerName
-        paymentResponseDTO.paymentMethod = paymentResponse.paymentMethod
-        paymentResponseDTO.receipt = paymentResponse.receipt
-        paymentResponseDTO.reference = paymentResponse.reference
+        paymentResponse.issuerName?.let {
+            paymentResponseDTO.issuerName = it
+        }
+        paymentResponse.paymentMethod?.let {
+            paymentResponseDTO.paymentMethod = it
+        }
+        paymentResponse.receipt?.let {
+            paymentResponseDTO.receipt = it
+        }
+        paymentResponse.reference?.let {
+            paymentResponseDTO.reference = it
+        }
         paymentResponseDTO.status = mapStatusDTO(paymentResponse.status)
-        paymentResponseDTO.transactionDate = paymentResponse.transactionDate
+        paymentResponse.transactionDate?.let {
+            paymentResponseDTO.transactionDate = it
+        }
         return paymentResponseDTO
     }
 

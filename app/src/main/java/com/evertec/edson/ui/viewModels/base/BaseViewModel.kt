@@ -85,9 +85,9 @@ abstract class BaseViewModel : ViewModel(), IErrorManager {
     companion object {
         @BindingAdapter("android:src")
         @JvmStatic
-        fun loadImage(imageView: ImageView, movieImage: String) {
-            if(movieImage.isNullOrEmpty()) {
-                imageView.loadImage(movieImage)
+        fun loadImage(imageView: ImageView, image: String) {
+            if(image.isNullOrEmpty()) {
+                imageView.loadImage(image)
             }
         }
     }

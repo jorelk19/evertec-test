@@ -15,7 +15,7 @@ class MyPaymentsAdapter(context: Context, myPayments : ArrayList<PaymentResponse
     override fun onBindData(model: PaymentResponse, position: Int, dataBinding: LayoutMyPaymentItemBinding) {
         dataBinding.tvInternalReference.text = model.internalReference.toString()
         dataBinding.tvMyPaymentState.text = model.status.message
-        dataBinding.tvMyPaymentTotalAmount.text = model.amount.total.toCurrencyFormat()
+        dataBinding.tvMyPaymentTotalAmount.text = model.amount!!.total.toCurrencyFormat()
         dataBinding.tvPaymentDate.text = model.date
     }
 

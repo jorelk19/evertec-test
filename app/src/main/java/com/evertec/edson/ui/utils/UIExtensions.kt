@@ -24,7 +24,7 @@ private val picasso: Picasso by lazy { Picasso.Builder(App.getAppContext()).down
  * Extension to load image from url
  * */
 fun ImageView.loadImage(imageUrl: String) {
-    picasso.load(App.getAppContext().getString(R.string.image_api)  + "/t/p/w500" + imageUrl)
+    picasso.load(imageUrl)
         .placeholder(R.drawable.image_placeholder)
         .into(this)
 }

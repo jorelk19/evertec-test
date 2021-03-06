@@ -16,28 +16,56 @@ import com.evertec.utils.ViewManager
 import com.evertec.utils.doOnTextChange
 import java.util.*
 
-class PaymentFragment : Fragment(){
+class PaymentFragment : Fragment() {
 
     private lateinit var paymentFragmentBinding: LayoutPaymentFragmentBinding
     private val viewModel by viewModels<PaymentViewModel> { getViewModelFactory() }
     private var currentDate = ""
+
     /**
      * Method to instantiate the view
      * */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         paymentFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.layout_payment_fragment, container, false)
         paymentFragmentBinding.viewModel = viewModel
+        paymentFragmentBinding.lifecycleOwner = ViewManager.getInstance.getCurrentActivity()
         setListeners()
         addSubscriptions()
         return paymentFragmentBinding.root
     }
 
     private fun addSubscriptions() {
-        viewModel.validateFields()
+        viewModel.getCardName().observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+            viewModel.setCardNameDescription(it)
+            viewModel.validateFields()
+        })
+
+        viewModel.getCardNumber().observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+            viewModel.setCardNumberDescription(it)
+            viewModel.validateFields()
+        })
+
+        viewModel.getCvvNumber().observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+            viewModel.setCvvNumberDescription(it)
+            viewModel.validateFields()
+        })
+
+        viewModel.getExpirationDate().observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+            viewModel.setExpirationDateDescription(it)
+            viewModel.validateFields()
+        })
+
+        viewModel.getTotalPayment().observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+            viewModel.validateFields()
+        })
     }
 
     private fun setListeners() {
         paymentFragmentBinding.etCardDate.doOnTextChange { s, before -> validateDate(s, before) }
+        paymentFragmentBinding.etCardName.doOnTextChange { s, before -> viewModel.setCardNameDescription(s.toString()) }
+        paymentFragmentBinding.etCardNumber.doOnTextChange { s, before -> viewModel.setCardNumberDescription(s.toString()) }
+        paymentFragmentBinding.etCvv.doOnTextChange { s, before -> viewModel.setCvvNumberDescription(s.toString()) }
+        paymentFragmentBinding.etTotalAmount.doOnTextChange { s, before ->  viewModel.validateFields() }
     }
 
     private fun validateDate(s: CharSequence, before: Int) {

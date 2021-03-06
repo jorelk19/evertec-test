@@ -3,6 +3,7 @@ package com.evertec.utils
 import android.animation.AnimatorInflater
 import android.app.Dialog
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
@@ -151,5 +152,12 @@ class ViewManager : INavigation {
      * Method to return the connection state
      * */
     override fun hasInternet() = internetState
+
+    /**
+     * Method used to get the image resources
+     * */
+    fun getDrawable(drawableId: Int): Drawable? {
+        return this.currentActivity.getDrawable(drawableId)
+    }
 
 }

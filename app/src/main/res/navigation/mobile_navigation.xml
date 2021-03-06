@@ -7,12 +7,12 @@
     <fragment
         android:id="@+id/paymentFragment"
         android:name="com.evertec.edson.ui.views.fragments.PaymentFragment"
-        android:label="PaymentFragment"
+        android:label="@string/payment_screen_title"
         tools:layout="@layout/layout_payment_fragment" />
     <fragment
         android:id="@+id/myPaymentsFragment"
         android:name="com.evertec.edson.ui.views.fragments.MyPaymentsFragment"
-        android:label="MyPaymentsFragment"
+        android:label="@string/my_payments_screen_title"
         tools:layout="@layout/layout_my_payments_fragment"
         />
 </navigation>

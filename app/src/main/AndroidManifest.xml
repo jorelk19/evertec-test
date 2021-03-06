@@ -32,6 +32,12 @@
             android:configChanges="orientation|screenSize"
             android:theme="@style/Theme.EvertecTest"
             android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".ui.views.activities.NotificationActivity"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/Translucent"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

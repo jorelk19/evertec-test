@@ -44,4 +44,7 @@
     <string name="card_currency_sign">$ 0</string>
     <string name="card_payment_button">Realizar pago</string>
     <string name="total_payment">Total a pagar</string>
+    <string name="internal_reference">Referencia interna</string>
+    <string name="transaction_state">Estado de la transacción</string>
+    <string name="total_amount">Total pagado</string>
 </resources>
